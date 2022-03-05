@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from "styled-components"
 import { ArrowLeftOutlined, ArrowRightOutlined } from '@material-ui/icons'
-import { useState } from 'react/cjs/react.production.min'
+import { sliderItems } from '../data'
 
 
 const Container = styled.div`
@@ -15,7 +15,7 @@ overflow:hidden;
 const Wrapper = styled.div`
 height:100%;
 display:flex;
-transform:translateX(0vw);
+transform:translateX(${props=>props.slideIndex * -100}vw);
 `
 
 const Slide = styled.div`
@@ -79,57 +79,43 @@ z-index: 2;
 
 const Slider = () => {
 
+    const [slideIndex, setSlideIndex] = useState(0);
+
+    const handleClick = (direction) =>
+    {
+        if(direction === "left"){
+            setSlideIndex(slideIndex > 0 ? slideIndex-1 : 2)
+        } else (
+            setSlideIndex (slideIndex < 2 ? slideIndex +1 : 0)
+        )
+
+    }
 
   return (
     <Container>
-        <Arrow direction="left">
+        <Arrow direction="left" onClick={()=>handleClick("left")}>
             <ArrowLeftOutlined/>
         </Arrow>
-        <Wrapper>
-            <Slide bg="f5fafd"> 
+        <Wrapper slideIndex = {slideIndex}>
+            {sliderItems.map((item) => 
+            <Slide bg={item.bg}> 
             <ImgContainer>
 
-                <Image src="https://cdn2.picryl.com/photo/2015/05/01/woman-shopping-lv-401bca-1024.jpg" />
+                <Image src={item.img} />
 
             </ImgContainer>
 
             <InfoContainer>
-                <Title>SPRING SALE</Title>
-                <Desc>Don't compromise on style, get 20% off ALL luxury bags!</Desc>
+                <Title>{item.title}</Title>
+                <Desc>{item.desc}</Desc>
                 <Button>SHOW NOW</Button>
             
             </InfoContainer>
             </Slide>
-            <Slide bg="fcf1ed"> 
-            <ImgContainer>
-
-                <Image src="https://cdn2.picryl.com/photo/2015/05/01/woman-shopping-lv-401bca-1024.jpg" />
-
-            </ImgContainer>
-
-            <InfoContainer>
-                <Title>Summer Sale!</Title>
-                <Desc>Don't compromise on style, get 20% off ALL luxury bags!</Desc>
-                <Button>SHOW NOW</Button>
-            
-            </InfoContainer>
-            </Slide>
-            <Slide bg="fbf0f4"> 
-            <ImgContainer>
-
-                <Image src="https://cdn2.picryl.com/photo/2015/05/01/woman-shopping-lv-401bca-1024.jpg" />
-
-            </ImgContainer>
-
-            <InfoContainer>
-                <Title>Summer Sale!</Title>
-                <Desc>Don't compromise on style, get 20% off ALL luxury bags!</Desc>
-                <Button>SHOW NOW</Button>
-            
-            </InfoContainer>
-            </Slide>
+            )}
+      
         </Wrapper>
-        <Arrow direction="right">
+        <Arrow direction="right" onClick={()=>handleClick("right")}>
             <ArrowRightOutlined/>
         </Arrow>
         </Container>
