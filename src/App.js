@@ -1,12 +1,9 @@
-import React from 'react'
-import Products from './components/Products/Products'
+import Home from './pages/Home'
 
-const App = () => {
+function App() {
   return (
-    <div>
-        <Products />
-    </div>
-  )
+    <Home />
+  );
 }
 
 export default App;
