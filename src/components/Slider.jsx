@@ -79,17 +79,10 @@ z-index: 2;
 
 const Slider = () => {
 
-    const [slideIndex, setSlideIndex ] = useState(0)
-
-    const handleClick = (direction) => {
-
-
-    };
-
 
   return (
     <Container>
-        <Arrow direction="left" onClick={()=>handleClick("left")}>
+        <Arrow direction="left">
             <ArrowLeftOutlined/>
         </Arrow>
         <Wrapper>
@@ -136,7 +129,7 @@ const Slider = () => {
             </InfoContainer>
             </Slide>
         </Wrapper>
-        <Arrow direction="right" onClick={()=>handleClick("left")}>
+        <Arrow direction="right">
             <ArrowRightOutlined/>
         </Arrow>
         </Container>
