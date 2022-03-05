@@ -82,13 +82,15 @@ const Slider = () => {
 
     const [slideIndex, setSlideIndex] = useState(0);
 
-    const handleClick = (direction) => {
-        if (direction === "left") {
-          setSlideIndex(slideIndex > 0 ? slideIndex - 1 : sliderItems.length - 1);
-        } else {
-          setSlideIndex(slideIndex < sliderItems.length - 1 ? slideIndex + 1 : 0);
-        }
-      };
+    const handleClick = (direction) =>
+    {
+        if(direction === "left"){
+            setSlideIndex(slideIndex > 0 ? slideIndex-1 : 2)
+        } else (
+            setSlideIndex (slideIndex < 2 ? slideIndex +1 : 0)
+        )
+
+    }
 
   return (
     <Container>
@@ -97,7 +99,7 @@ const Slider = () => {
         </Arrow>
         <Wrapper slideIndex = {slideIndex}>
             {sliderItems.map((item) => 
-            <Slide bg={item.bg} key={item.id}> 
+            <Slide bg={item.bg}> 
             <ImgContainer>
 
                 <Image src={item.img} />
