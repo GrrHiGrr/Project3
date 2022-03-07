@@ -51,36 +51,35 @@ export const categories = [
 export const popularProducts = [
     {
         id: 1,
-        img: 'https://pixy.org/src/149/1497261.png',
+        img: '',
     },
     {
         id:2,
-        img: 'https://img.freepik.com/free-psd/sports-cap-logo-mockup-design-isolated_185216-377.jpg',
+        img: '',
     },
     {
         id:3,
-        img: 'https://freesvg.org/img/secretlondon_Black_Dress.png',
+        img: '',
     },
     {
         id:4,
-        img:'https://images.pexels.com/photos/6952748/pexels-photo-6952748.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', 
+        img:'', 
     },
     {
         id: 5,
-        img: 'https://pixy.org/src/149/1497261.png',
+        img: '',
     },
     {
         id:6,
-        img: 'https://img.freepik.com/free-psd/sports-cap-logo-mockup-design-isolated_185216-377.jpg',
+        img: '',
     },
     {
         id:7,
-        img: 'https://freesvg.org/img/secretlondon_Black_Dress.png',
+        img: '',
     },
     {
         id:8,
-        img:'https://images.pexels.com/photos/6952748/pexels-photo-6952748.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', 
+        img:'', 
     },
-
 
 ]
