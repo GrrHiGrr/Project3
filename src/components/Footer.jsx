@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { GitHub, LinkedIn, MailOutline, Phone, Room } from '@material-ui/icons';
+import { GitHub, MailOutline, Phone, Room } from '@material-ui/icons';
 
 const Container = styled.div`
 display: flex;
@@ -25,10 +25,12 @@ display: flex;
 `
 
 const SocialIcon = styled.div`
-width: 90px;
-height: 90px;
 border-radius: 50%;
 color: #001429;
+
+&:hover {
+    color: gray;
+}
 `
 
 const Center = styled.div`
