@@ -1,10 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
+import { mobile } from '../responsive';
 
 import { GitHub, MailOutline, Phone, Room } from '@material-ui/icons';
 
 const Container = styled.div`
 display: flex;
+${mobile({flexDirection: "column"})}
 `
 const Left = styled.div`
 flex:1;
@@ -39,7 +41,7 @@ padding: 20px;
 `
 const Title = styled.h3`
 margin-bottom: 30px;
-
+${mobile({display: "none"})}
 `
 
 const List = styled.ul`
@@ -47,7 +49,9 @@ margin: 0;
 padding: 0;
 list-style: none;
 display: flex;
-flex-wrap: wrap;`
+flex-wrap: wrap;
+${mobile({display: "none"})}
+`
 
 const ListItem = styled.li`
 width: 50%;
@@ -57,6 +61,8 @@ margin-bottom: 10px;
 const Right = styled.div`
 flex:1;
 padding: 20px;
+${mobile({backgroundColor: "#eee"})}
+
 `
 const ContactItem = styled.div`
 margin-bottom: 20px;
