@@ -7,6 +7,8 @@ import Products from '../components/Products'
 import Slider from '../components/Slider'
 import Footer from '../components/Footer'
 
+
+
 const Home = () => {
   return (
     <div>
