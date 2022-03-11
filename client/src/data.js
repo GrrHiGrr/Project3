@@ -30,12 +30,14 @@ export const categories = [
         id: 1,
         img: "https://images.pexels.com/photos/994523/pexels-photo-994523.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
         title: "CLOTHES",
+        cat:"women"
         
     },
     {
         id: 2,
         img: "https://images.pexels.com/photos/278918/pexels-photo-278918.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
         title: "GAMES",
+        cat:"coat"
         
 
     },
@@ -43,6 +45,7 @@ export const categories = [
         id: 3,
         img: "https://images.pexels.com/photos/6357/coffee-cup-desk-pen.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
         title: "SCHOOL/WORK",
+        cat:"jeans"
         
     }
     
