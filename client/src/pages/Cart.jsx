@@ -5,6 +5,8 @@ import Navbar from '../components/Navbar'
 import styled from 'styled-components'
 import { Add, Remove } from '@material-ui/icons'
 import { mobile } from '../responsive'
+import { useSelector } from 'react-redux'
+
 
 const Container = styled.div`
 
@@ -145,6 +147,9 @@ margin: auto;
 
 
 const Cart = () => {
+
+const cart = useSelector(state=>state.cart)
+
   return (
     <Container>
         <Navbar/>
@@ -160,55 +165,31 @@ const Cart = () => {
                 </TopButton></Top>
             <Bottom>
                 <Info>
-                <Product>
+                {cart.products.map(product=>(<Product>
                     <ProductDetail>
-                <Image src = "https://via.placeholder.com/250"/>
+                <Image src = {product.img}/>
                 <Details>
                     <ProductName>
-                        <b>Product: </b> Product Name
+                        <b>Product: </b> {product.name}}
                     </ProductName>
                     <ProductID>
-                        <b>ID: </b> 7777777
+                        <b>ID: </b> {product.id}
                     </ProductID>
                     <ProductSize>
-                        <b>Size: </b> Product Size
+                        <b>Size: </b> {product.size}
                     </ProductSize>
                 </Details>
                     </ProductDetail>
                     <PriceDetail>
                         <ProductAmountContainer>
                             <Add/>
-                            <ProductAmount>1</ProductAmount>
+                            <ProductAmount>{product.quantity}</ProductAmount>
                             <Remove/>
                         </ProductAmountContainer>
-                        <ProductPrice>$ 20</ProductPrice>
+                        <ProductPrice>$ {product.price*product.quantity}</ProductPrice>
                     </PriceDetail>
-                </Product>
+                </Product>))}
                 <Hr/>
-                <Product>
-                    <ProductDetail>
-                <Image src = "https://via.placeholder.com/250"/>
-                <Details>
-                    <ProductName>
-                        <b>Product: </b> Product Name
-                    </ProductName>
-                    <ProductID>
-                        <b>ID: </b> 76767676
-                    </ProductID>
-                    <ProductSize>
-                        <b>Size: </b> Product Size
-                    </ProductSize>
-                </Details>
-                    </ProductDetail>
-                    <PriceDetail>
-                        <ProductAmountContainer>
-                            <Add/>
-                            <ProductAmount>1</ProductAmount>
-                            <Remove/>
-                        </ProductAmountContainer>
-                        <ProductPrice>$ 20</ProductPrice>
-                    </PriceDetail>
-                </Product>
                 </Info>
                 <Summary>
                 <SummaryTitle>
@@ -219,7 +200,7 @@ ORDER SUMMARY
 Subtotal
                     </SummaryItemText>
                     <SummaryItemPrice>
-$ 40
+${cart.total.toFixed(2)}
                     </SummaryItemPrice>
                 </SummaryItem>
                 <SummaryItem>
@@ -227,7 +208,7 @@ $ 40
 Estimated Shipping
                     </SummaryItemText>
                     <SummaryItemPrice>
-$ 6.85
+                    ${(cart.total*.08).toFixed(2)}
                     </SummaryItemPrice>
                 </SummaryItem>
                 <SummaryItem>
@@ -235,7 +216,7 @@ $ 6.85
 Shipping Discount
                     </SummaryItemText>
                     <SummaryItemPrice>
--$ 6.85
+                    -${(cart.total*.04).toFixed(2)}
                     </SummaryItemPrice>
                 </SummaryItem>
                 <SummaryItem type = "total">
@@ -243,7 +224,7 @@ Shipping Discount
 Total
                     </SummaryItemText>
                     <SummaryItemPrice>
-$ 40
+$ {(cart.total + cart.total*0.04).toFixed(2)}
                     </SummaryItemPrice>
                 </SummaryItem>
 

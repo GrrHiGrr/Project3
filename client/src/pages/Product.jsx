@@ -8,6 +8,8 @@ import Newsletter from '../components/Newsletter'
 import {mobile} from '../responsive'
 import { useLocation } from 'react-router-dom'
 import { publicRequest } from '../requestMethods'
+import { addProduct } from '../redux/cartRedux'
+import { useDispatch } from 'react-redux'
 
 const Container=styled.div`
 `
@@ -107,8 +109,9 @@ const Product = () => {
   const location = useLocation();
   const id = location.pathname.split('/')[2];
   const [product, setProduct] = useState({});
-  const [quantity, setQuantity] = useState(1);
-  
+  const [quantity, setQuantity] = useState(0);
+  const [size, setSize] = useState('');
+  const dispatch = useDispatch();
 
   useEffect(()=>{
     const getProduct = async ()=>{
@@ -120,6 +123,23 @@ const Product = () => {
     }
     getProduct();
   }, [id])
+
+  const handleQuantity = (type) => {
+    if (type === 'dec')
+    {
+      setQuantity(quantity-1)
+    }
+    else {
+      setQuantity(quantity+1)
+    }
+  }
+
+  const handleClick = () => {
+    dispatch(
+    addProduct({...product, quantity, size})
+    )
+  }
+
   return (
     <Container>
       <Navbar/>
@@ -144,8 +164,8 @@ const Product = () => {
               <FilterTitle>
               Size
               </FilterTitle>
-              <FilterSize>
-              {product.size.map((s) => (
+              <FilterSize onChange={(e)=>setSize(e.target.value)}>
+              {product.size?.map((s) => (
                 <FilterSizeOption key={s}>{s}</FilterSizeOption>
               ))}
               </FilterSize>
@@ -155,11 +175,11 @@ const Product = () => {
 
         <AddContainer>
           <AmountContainer>
-            <Remove/>
+            <Remove onClick={()=>handleQuantity('dec')}/>
             <Amount>{quantity}</Amount>
-            <Add/>
+            <Add onClick={()=>handleQuantity('inc')}/>
           </AmountContainer>
-          <Button>Add To Cart</Button>
+          <Button onClick = {handleClick}>Add To Cart</Button>
 
         </AddContainer>
           

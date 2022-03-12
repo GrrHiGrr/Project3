@@ -3,11 +3,18 @@ import styled from 'styled-components'
 import { ShoppingCartOutlined, Search } from '@material-ui/icons'
 import { Badge } from '@material-ui/core'
 import {mobile} from '../responsive'
+import {useSelector} from 'react-redux'
+import { Link } from 'react-router-dom'
 
 const Container = styled.div`
 height: 60px;
 ${mobile({height: "50px"})}
 `
+
+const linkStyle = {
+  textDecoration: "none",
+  color: "black"
+}
 
 const Wrapper = styled.div`
 padding: 10px 20px;
@@ -40,12 +47,12 @@ ${mobile({width: "50px"})}
 
 
 const Center = styled.div`
-flex:1;
+flex:2;
 text-align: center;
 `
 const Logo = styled.h1`
 font-weight: bold;
-${mobile({fontSize: "24px", margin: "0px 10px"})}
+${mobile({fontSize: "20px", margin: "0px 10px"})}
 `
 
 const Right = styled.div`
@@ -53,6 +60,7 @@ flex:1;
 display: flex;
 align-items: center;
 justify-content: flex-end;
+
 ${mobile({flex: 2, justifyContent: "center"})}
 `
 
@@ -64,6 +72,7 @@ ${mobile({fontSize: "12px", marginLeft: "10px"})}
 `
 
 const Navbar = () => {
+  const quantity = useSelector(state=>state.cart.quantity)
   return (
     <Container>
      <Wrapper>
@@ -74,13 +83,14 @@ const Navbar = () => {
         </SearchContainer>
         </Left>
         
-        <Center> <Logo>-OURSTORE</Logo> </Center>
+        <Center><Link to="/" style={linkStyle}> <Logo>-OURSTORE</Logo> </Link> </Center>
         <Right> 
-        <MenuItem>REGISTER</MenuItem>
-        <MenuItem>Sign In</MenuItem>
-        <MenuItem><Badge badgeContent={4} color="primary">
+        <Link to="/register" style={linkStyle}><MenuItem>REGISTER</MenuItem></Link>
+        <Link to="/login" style={linkStyle}><MenuItem>Sign In</MenuItem></Link>
+        
+        <Link to="/cart" style={linkStyle}><MenuItem><Badge badgeContent={quantity} color="primary">
             <ShoppingCartOutlined />
-            </Badge></MenuItem>
+            </Badge></MenuItem></Link>
          </Right>
 
      </Wrapper>
