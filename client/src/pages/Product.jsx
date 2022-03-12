@@ -1,11 +1,13 @@
 import { Add, Remove } from '@material-ui/icons'
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import styled from 'styled-components'
 import Announcement from '../components/Announcement'
 import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
 import Newsletter from '../components/Newsletter'
 import {mobile} from '../responsive'
+import { useLocation } from 'react-router-dom'
+import { publicRequest } from '../requestMethods'
 
 const Container=styled.div`
 `
@@ -82,7 +84,7 @@ const Amount = styled.span`
 width: 30px;
 height: 30px;
 border-radius: 10px;
-border: 1px solid teal;
+border: 1px solid maroon;
 display: flex;
 align-items: center;
 justify-content: center;
@@ -90,7 +92,7 @@ margin: 0px 5px;
 `
 const Button = styled.button`
   padding: 15px;
-  border: 2px solid teal;
+  border: 2px solid maroon;
   background-color: white;
   cursor: pointer;
   font-weight: 1000;
@@ -102,24 +104,40 @@ const Button = styled.button`
 
 
 const Product = () => {
+  const location = useLocation();
+  const id = location.pathname.split('/')[2];
+  const [product, setProduct] = useState({});
+  const [quantity, setQuantity] = useState(1);
+  
+
+  useEffect(()=>{
+    const getProduct = async ()=>{
+      try{
+        const res = await publicRequest.get("/products/find/"+id)
+        setProduct(res.data);
+        
+      }catch{}
+    }
+    getProduct();
+  }, [id])
   return (
     <Container>
       <Navbar/>
       <Announcement/>
       <Wrapper>
         <ImgContainer>
-        <Image src = 'https://via.placeholder.com/250'/>
+        <Image src = {product.img}/>
         </ImgContainer>
         <InfoContainer>
           <Title>
-          Product Title
+          {product.title}
           </Title>
           <Desc>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officiis tenetur, quae dolor aperiam facere autem explicabo. Iste soluta aut consequatur? Neque ducimus rem aspernatur deserunt provident voluptatibus harum commodi ipsa.
+        {product.desc}
           </Desc>
 
           <Price>
-          $ 20
+          {product.price}
           </Price>
         <FilterContainer>
           <Filter>
@@ -127,11 +145,9 @@ const Product = () => {
               Size
               </FilterTitle>
               <FilterSize>
-              <FilterSizeOption>XS</FilterSizeOption>
-              <FilterSizeOption>S</FilterSizeOption>
-              <FilterSizeOption>M</FilterSizeOption>
-              <FilterSizeOption>L</FilterSizeOption>
-              <FilterSizeOption>XL</FilterSizeOption>
+              {product.size.map((s) => (
+                <FilterSizeOption key={s}>{s}</FilterSizeOption>
+              ))}
               </FilterSize>
           </Filter>
           
@@ -140,7 +156,7 @@ const Product = () => {
         <AddContainer>
           <AmountContainer>
             <Remove/>
-            <Amount>1</Amount>
+            <Amount>{quantity}</Amount>
             <Add/>
           </AmountContainer>
           <Button>Add To Cart</Button>

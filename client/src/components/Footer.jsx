@@ -79,7 +79,7 @@ const Footer = () => {
     <Container>
         <Left>
             <Logo>
-            OURSTORE.
+            -OURSTORE
             </Logo>
             <Desc>
 Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae eos minima fugit iste id, 
@@ -102,7 +102,6 @@ iure minus eveniet consequuntur?
             <ListItem>Home</ListItem>
             <ListItem>Cart</ListItem>
             <ListItem>My Account</ListItem>
-            <ListItem>Terms and Conditions</ListItem>
         </List>
 
         </Center>

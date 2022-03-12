@@ -1,6 +1,8 @@
 import styled from "styled-components"
-import React from 'react'
+import React, { useEffect } from 'react'
 import { FavoriteBorderOutlined, SearchOutlined, ShoppingCartOutlined } from "@material-ui/icons"
+import { useLocation } from "react-router-dom"
+import { publicRequest } from "../requestMethods"
 
 
 const Info = styled.div`
@@ -34,13 +36,6 @@ position: relative;
 }
 `
 
-const Circle = styled.div`
-width: 200px;
-height: 200px;
-border-radius: 50%;
-background-color: black;
-position: absolute;
-`
 
 const Image=styled.img`
 height: 75%;
@@ -69,9 +64,11 @@ transition: all 0.3s ease;
 
 
 const Product = ({item}) => {
+
+
   return (
     <Container>
-        <Circle/>
+        
         <Image src={item.img}/>
         <Info>
             <Icon>
