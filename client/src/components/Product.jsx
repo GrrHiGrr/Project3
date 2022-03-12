@@ -16,7 +16,6 @@ display:flex;
 align-items:center;
 justify-content:center;
 transition: all 0.3s ease;
-
 `
 
 const Container = styled.div`
@@ -29,8 +28,6 @@ align-items: center;
 justify-content: center;
 background-color: #f5fbfd;
 position: relative;
-
-
 &:hover ${Info}
 {
     opacity: 1;
@@ -43,7 +40,6 @@ height: 200px;
 border-radius: 50%;
 background-color: black;
 position: absolute;
-
 `
 
 const Image=styled.img`
@@ -61,7 +57,6 @@ align-items:center;
 justify-content:center;
 margin: 10px;
 transition: all 0.3s ease;
-
 &:hover{
     background-color: #e9f5f5;
     transform: scale(1.1);

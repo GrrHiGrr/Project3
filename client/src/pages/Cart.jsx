@@ -145,7 +145,6 @@ margin: auto;
 
 
 const Cart = () => {
-    const cart = useSelector(state=>state.cart)
   return (
     <Container>
         <Navbar/>
